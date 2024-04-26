@@ -1,10 +1,10 @@
 import { useState, useEffect } from 'react';
-import Select, { ValueType } from 'react-select';
+import Select from 'react-select';
 
 function App() {
   const [opcionesEstado, setOpcionesEstado] = useState([]);
   const [opcionesCiudad, setOpcionesCiudad] = useState([]);
-  const [estadoSeleccionado, setEstadoSeleccionado] = useState<ValueType<OptionType>>(null);
+  const [estadoSeleccionado, setEstadoSeleccionado] = useState<ValueType<any>>(null);
 
   useEffect(() => {
     fetchDataEstado();
@@ -48,9 +48,9 @@ function App() {
     }
   };
 
-  const fetchDataCiudad = async (claveEstado) => {
+  const fetchDataCiudad = async (claveEstado: number) => {
     try {
-      const response = await fetch(`http://127.0.0.1:8000/api/City/${claveEstado}`, {
+      const response = await fetch(`http://127.0.0.1:8000/api/City?clave_estado=${claveEstado}`, {
         headers: {
           'Accept': 'application/json',
         },
